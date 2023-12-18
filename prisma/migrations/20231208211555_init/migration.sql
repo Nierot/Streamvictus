@@ -1,0 +1,31 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "ldapId" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Video" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "thumbnail" TEXT NOT NULL,
+    "duration" INTEGER NOT NULL,
+    "views" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "VideoView" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "videoId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_ldapId_key" ON "User"("ldapId");

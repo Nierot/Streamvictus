@@ -1,3 +1,4 @@
+import { useRequestHeaders } from 'nuxt/app';
 import { prisma } from '~/prisma/db';
 
 export default defineEventHandler(async (event) => {
@@ -7,8 +8,6 @@ export default defineEventHandler(async (event) => {
 
   if (query.tag && query.tag !== '0') {
 
-    console.log({ query })
-
     const videoTags = await prisma.videoTag.findMany({
       where: {
         tagId: Number(query.tag),
@@ -17,8 +16,6 @@ export default defineEventHandler(async (event) => {
         video: true,
       },
     });
-
-    console.log({ videoTags })
 
     const videos = videoTags.map((vt) => vt.video);
     return { videos, tags };

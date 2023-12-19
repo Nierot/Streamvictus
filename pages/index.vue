@@ -3,14 +3,14 @@ const DEFAULT_THUMBNAIL = 'https://i.ytimg.com/vi/5qap5aO4i9A/maxresdefault.jpg'
 
 const selectedFilter = ref(0)
 
-const {data, error, refresh} = await useAsyncData('videos', () =>
-	$fetch('/api/videos', {
+const {data, error, refresh} = await useAsyncData('videos', () => {
+	return $fetch('/api/videos', {
 		params: {
 			tag: selectedFilter.value,
 		},
 		watch: [selectedFilter.value],
-	}),
-)
+	})
+})
 
 const setFilter = (id) => {
 	selectedFilter.value = id
@@ -21,7 +21,7 @@ const setFilter = (id) => {
 <template>
 	<div class="index">
 		<h1>Streamvictus</h1>
-		<h2>Hier een video uploaden? Stuur een mailtje naar niels@oddinvictus.nl</h2>
+		<p>Hier een video uploaden? Stuur een mailtje naar niels@oddinvictus.nl</p>
 
 		<hr />
 
@@ -60,6 +60,10 @@ const setFilter = (id) => {
 h1
 	font-size: 3rem
 	font-weight: 600
+
+p
+	margin-top: -0.5rem
+	margin-bottom: 0.5rem
 
 h2
 	font-size: 1.2rem
